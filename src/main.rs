@@ -1,8 +1,12 @@
+use std::any::Any;
+
 trait Animal{
     fn make_noise(&self);
     fn get_name(&self) -> String;
+    fn get_any(&self) -> &dyn Any;
 }
 
+#[derive(Debug)]
 struct Dog {
     name: String,
     age: u8,
@@ -16,8 +20,13 @@ impl Animal for Dog{
     fn get_name(&self) -> String{
         self.name.clone()
     }
+
+    fn get_any(&self) -> &dyn Any{
+        self
+    }
 }
 
+#[derive(Debug)]
 struct Cat {
     name: String,
     is_sleeping: bool,
@@ -31,8 +40,13 @@ impl Animal for Cat{
     fn get_name(&self) -> String{
         self.name.clone()
     }
+
+    fn get_any(&self) -> &dyn Any{
+        self
+    }
 }
 
+#[derive(Debug)]
 struct Duck {
     name: String,
     can_fly: bool,
@@ -45,6 +59,10 @@ impl Animal for Duck{
 
     fn get_name(&self) -> String{
         self.name.clone()
+    }
+
+    fn get_any(&self) -> &dyn Any{
+        self
     }
 }
 
@@ -70,12 +88,14 @@ fn main() {
         print!("{} make:", animal.get_name());
         animal.make_noise();
 
-        // Using `match` to access specific behavior.
-        // The compiler guarantees we cover all Animal types!
-//    match animal {
-        // Using pattern matching to call specific methods
-        // TODO
-//    }
+        println!("É dog? -> {:?}", animal.get_any().downcast_ref::<Dog>());
+        println!("É cat? -> {:?}", animal.get_any().downcast_ref::<Cat>());
+        println!("É duck? -> {:?}", animal.get_any().downcast_ref::<Duck>());
+
+        if let Some(cachorro) = animal.get_any().downcast_ref::<Dog>(){
+            println!("{} é um cachorro e a idade é {}", animal.get_name(), cachorro.age);
+        }
+
         println!("--------------------");
     }
 }
