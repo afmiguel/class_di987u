@@ -27,10 +27,24 @@ impl Cat {
 }
 
 // Using an enum Animal to represent different types of animals
-// TODO
+enum Animal{
+    Dog(Dog),
+    Cat(Cat),
+}
 
 // Implementing methods for the Animal enum
-// TODO
+impl Animal{
+    fn make_noise(&self){
+        match self{
+            Animal::Dog(cao) => {
+                cao.wag_tail();
+            },
+            Animal::Cat(gato) => {
+                gato.purr();
+            }
+        }
+    }
+}
 
 fn main() {
     let farm = vec![
