@@ -48,7 +48,14 @@ impl Animal{
 
 fn main() {
     let farm = vec![
-        // TODO: Create instances of Dog and Cat
+        Animal::Dog(Dog{
+            name: "Totó".to_string(),
+            age: 5,
+        }),
+        Animal::Cat(Cat{
+            name: "Fifi".to_string(),
+            is_sleeping: true,
+        }),
     ];
 
     println!("--- Welcome to the Farm with Enums ---");
@@ -57,10 +64,10 @@ fn main() {
 
         // Using `match` to access specific behavior.
         // The compiler guarantees we cover all Animal types!
-        match animal {
-            // Using pattern matching to call specific methods
-            // TODO
-        }
+//    match animal {
+        // Using pattern matching to call specific methods
+        // TODO
+//    }
         println!("--------------------");
     }
 }
