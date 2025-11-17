@@ -1,14 +1,7 @@
 // src/main.rs (final version)
-#[allow(dead_code)]
 struct Dog {
     name: String,
     age: u8,
-}
-
-impl Dog {
-    fn wag_tail(&self) {
-        println!("* {} wags its tail happily! *", self.name);
-    }
 }
 
 struct Cat {
@@ -16,15 +9,11 @@ struct Cat {
     is_sleeping: bool,
 }
 
-impl Cat {
-    fn purr(&self) {
-        if self.is_sleeping {
-            println!("* {} is sleeping and purring... zZz... prrrr... *", self.name);
-        } else {
-            println!("* {} looks at you and purrs: Prrrr! *", self.name);
-        }
-    }
+struct Duck {
+    name: String,
+    can_fly: bool,
 }
+
 
 // Using an enum Animal to represent different types of animals
 enum Animal{
