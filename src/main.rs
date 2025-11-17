@@ -48,35 +48,26 @@ impl Animal for Duck{
     }
 }
 
-
-// Implementing methods for the Animal enum
-impl Animal{
-    fn make_noise(&self){
-        match self{
-            Animal::Dog(cao) => {
-                cao.wag_tail();
-            },
-            Animal::Cat(gato) => {
-                gato.purr();
-            }
-        }
-    }
-}
-
 fn main() {
-    let farm = vec![
-        Animal::Dog(Dog{
+    let farm: Vec<Box<dyn Animal>> = vec![
+        Box::new(Dog{
             name: "Totó".to_string(),
             age: 5,
         }),
-        Animal::Cat(Cat{
+        Box::new(Cat{
             name: "Fifi".to_string(),
             is_sleeping: true,
         }),
+        Box::new(Duck{
+            name: "Donald".to_string(),
+            can_fly: false,
+        }),
+
     ];
 
     println!("--- Welcome to the Farm with Enums ---");
     for animal in &farm {
+        print!("{} make:", animal.get_name());
         animal.make_noise();
 
         // Using `match` to access specific behavior.
