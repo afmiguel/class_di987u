@@ -1,7 +1,21 @@
-// src/main.rs (final version)
+trait Animal{
+    fn make_noise(&self);
+    fn get_name(&self) -> String;
+}
+
 struct Dog {
     name: String,
     age: u8,
+}
+
+impl Animal for Dog{
+    fn make_noise(&self){
+        println!("Wolf!");
+    }
+
+    fn get_name(&self) -> String{
+        self.name.clone()
+    }
 }
 
 struct Cat {
@@ -9,17 +23,31 @@ struct Cat {
     is_sleeping: bool,
 }
 
+impl Animal for Cat{
+    fn make_noise(&self){
+        println!("Meow!");
+    }
+
+    fn get_name(&self) -> String{
+        self.name.clone()
+    }
+}
+
 struct Duck {
     name: String,
     can_fly: bool,
 }
 
+impl Animal for Duck{
+    fn make_noise(&self){
+        println!("Quack!");
+    }
 
-// Using an enum Animal to represent different types of animals
-enum Animal{
-    Dog(Dog),
-    Cat(Cat),
+    fn get_name(&self) -> String{
+        self.name.clone()
+    }
 }
+
 
 // Implementing methods for the Animal enum
 impl Animal{
